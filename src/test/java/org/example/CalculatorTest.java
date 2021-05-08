@@ -35,8 +35,18 @@ public class CalculatorTest {
      */
 
     @Test
-    public void addNumbers_whenManyCharactersSeparatedByComma_shouldReturnSum() {
+    public void addNumbers_whenTwoCharactersSeparatedByComma_shouldReturnSum() {
         int result = addNumbers("11,200");
         Assert.assertEquals(211, result);
+    }
+
+    /**
+     * Unit test that returns the sum of unlimited numbers separated by comma
+     */
+
+    @Test
+    public void addNumbers_whenManyCharactersSeparatedByComma_shouldReturnSum() {
+        int result = addNumbers("10,20,30,40");
+        Assert.assertEquals(100, result);
     }
 }

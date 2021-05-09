@@ -26,12 +26,12 @@ public class Calculator {
         if (!(numbers.contains(","))) {
             sum = Integer.parseInt(numbers);
         } else {
-            String[] result = numbers.split(",");
+            String newString = numbers.replace("\n",",");
+            String[] result = newString.split(",");
             for (int i = 0; i < result.length; i++) {
                 sum += Integer.parseInt(result[i]);
             }
         }
-
         return sum;
     }
 }

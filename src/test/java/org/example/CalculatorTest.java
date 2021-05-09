@@ -49,4 +49,13 @@ public class CalculatorTest {
         int result = addNumbers("10,20,30,40");
         Assert.assertEquals(100, result);
     }
+
+    /**
+     * Unit test that returns the sum of many characters delimited by comma and whitespace
+     */
+    @Test
+    public void addNumbers_whenManyCharactersSeparatedByCommaAndNewLine_shouldReturnSum() {
+        int result = addNumbers("1\n2,3\n4");
+        Assert.assertEquals(10, result);
+    }
 }

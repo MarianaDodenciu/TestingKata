@@ -58,4 +58,13 @@ public class CalculatorTest {
         int result = addNumbers("1\n2,3\n4");
         Assert.assertEquals(10, result);
     }
+
+    /**
+     * Unit test that returns the sum of many numbers supporting different delimitators
+     */
+    @Test
+    public void addNumbers_whenManyNumbersSeparatedByDelimitator_shouldReturnSum() {
+        int result = addNumbers("//;\n1;2");
+        Assert.assertEquals(3,result);
+    }
 }

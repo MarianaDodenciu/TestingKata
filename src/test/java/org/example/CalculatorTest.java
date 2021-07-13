@@ -7,6 +7,10 @@ import static org.example.Calculator.addNumbers;
 
 /**
  * Unit tests for Calculator class.
+ * Naming your tests:
+ * -the name of the method being tested
+ * -the scenario under which it's being tested
+ * -the expected behavior hen the scenario is invoked
  */
 public class CalculatorTest {
 

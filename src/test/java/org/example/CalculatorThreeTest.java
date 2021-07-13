@@ -53,4 +53,15 @@ public class CalculatorThreeTest {
         expectedException.expectMessage("Negatives not allowed: [-2]");
         int result = CalculatorTwo.addNumbers("//;\n1;-2");
     }
+
+    @Test
+    public void addNumbers_whenNumbersGraterThanOneThousand_shouldReturnSumWithoutThem() throws NegativeNumberException {
+        Assert.assertEquals(1,CalculatorThree.add("//;\n1;1000"));
+    }
+
+    @Test
+    public void addNumbers_whenNumbersGraterThanOneThousandAndSplitedByCommaAndNewLine_shouldReturnSumWithoutThem() throws NegativeNumberException {
+        Assert.assertEquals(1,CalculatorThree.add("1,1000"));
+    }
+    
 }

@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -31,33 +32,35 @@ public class CalculatorThree {
         String numbersGroup = string.group(2);
         String[] numbersSplited = numbersGroup.split(customDelimiter);
         checkNegativeNumbers(numbersSplited);
-       // String[] smallerNr = checkNumbersGraterThanOneThousand(numbersSplited).toArray(new String[0]);
-       String[] remainingNumbers = checkNumbersGraterThanOneThousand(numbersSplited);
-        for (int i = 0; i< remainingNumbers.length; i++) {
-            sum = sum + Integer.parseInt(remainingNumbers[i]);
+       List<Integer> remainingNumbers = checkNumbersGraterThanOneThousand(numbersSplited);
+
+        for (Integer nr: remainingNumbers) {
+            sum = sum + nr;
         }
+
         return sum;
     }
 
-    private static String[] checkNumbersGraterThanOneThousand(String[] numbersSplited) {
-        List<String> nrList = Arrays.asList(numbersSplited);
-        List<Integer> smallerNumbers = nrList.stream()
-                .map(s -> Integer.valueOf(s))
-                .filter(nr -> nr > 1000)
+    private static List<Integer> checkNumbersGraterThanOneThousand(String[] numbersSplited) {
+        List<Integer> originalList = Arrays.asList(numbersSplited).stream().map(s -> Integer.valueOf(s)).collect(Collectors.toList()); //transform String into Integer list
+        List<Integer> originalListFiltered  = originalList.stream()
+                .filter(nr -> nr >= 1000)
                 .collect(Collectors.toList());
+        List<Integer> differences = new ArrayList<>(originalList);
 
-        if (smallerNumbers.size() > 0) {
-            //some logic
+        if (originalListFiltered.size() > 0) {
+            differences.removeAll(originalListFiltered);
         }
-        return numbersSplited;
+        return differences;
     }
 
     private static int addNumbersSeparatedByCommaAndNewLine(String numbers) throws NegativeNumberException {
         int sum = 0;
         String[] numbersArray = numbers.split(",|\n");
         checkNegativeNumbers(numbersArray);
-        for (int i = 0; i < numbersArray.length; i++) {
-            sum = sum + Integer.parseInt(numbersArray[i]);
+        List<Integer> filteredList = checkNumbersGraterThanOneThousand(numbersArray);
+        for (Integer nr: filteredList) {
+            sum = sum + nr;
         }
         return sum;
     }

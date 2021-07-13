@@ -26,11 +26,11 @@ public class CalculatorThree {
 
     private static int addNumbersSeparatedByDynamicDelimiter(String numbers) throws NegativeNumberException {
         int sum = 0;
-        Matcher string = Pattern.compile("//(.)\n(.*)").matcher(numbers);
+        Matcher string = Pattern.compile("//(.{1,9})\n(.*)").matcher(numbers);
         string.matches();
         String customDelimiter = string.group(1);
         String numbersGroup = string.group(2);
-        String[] numbersSplited = numbersGroup.split(customDelimiter);
+        String[] numbersSplited = numbersGroup.split(Pattern.quote(customDelimiter)); //folosita ca pattern cand ai mai multe caractere
         checkNegativeNumbers(numbersSplited);
        List<Integer> remainingNumbers = checkNumbersGraterThanOneThousand(numbersSplited);
 

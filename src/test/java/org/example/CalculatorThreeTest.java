@@ -63,5 +63,12 @@ public class CalculatorThreeTest {
     public void addNumbers_whenNumbersGraterThanOneThousandAndSplitedByCommaAndNewLine_shouldReturnSumWithoutThem() throws NegativeNumberException {
         Assert.assertEquals(1,CalculatorThree.add("1,1000"));
     }
-    
+
+    /**
+     * Delimiters can be of any length
+     */
+    @Test
+    public void addNumbers_whenDynamicDelimiterOfAnyLength_shouldReturnSum() throws NegativeNumberException {
+        Assert.assertEquals(6,CalculatorThree.add("//***\n1***2***3"));
+    }
 }
